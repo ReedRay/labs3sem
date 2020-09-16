@@ -62,10 +62,7 @@ public:
 	{
 		for (int i = 0; i < m_length; i++)
 		{ 
-			if (m_array[i]== -842150451)
-			{
-				break;
-			}
+			
 			std::cout << m_array[i] << ' ';
 		}
 	}
