@@ -29,7 +29,7 @@ protected:
 	std::string m_type;
 };
 
-class Deteched :   public House
+class Deteched : virtual  public House
 {
 public:
 	Deteched(int id = 0, int address = 0, int floors = 1, std::string type1 = "Deteched") :m_id1(id), m_address_line1(address), House(floors, type1)
@@ -50,7 +50,7 @@ protected:
 
 };
 
-class Flat : public House
+class Flat : virtual public House
 {
 public:
 	Flat(int id = 0, int post_index = 0, int floors = 1, std::string type = "Deteched") :m_id(id), m_post_index(post_index), House(floors, type)
