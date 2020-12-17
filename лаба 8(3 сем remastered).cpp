@@ -36,14 +36,12 @@ int File::Del(int index, int n)
 	{
 		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("File is not open");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return 0;
+		exception.getError();
 	}
 	ATS* ms;
 	ms = new ATS[n];
@@ -82,14 +80,12 @@ void File::ReadTextBin()
 	{
 		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("File is not open");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return;
+		exception.getError();
 	}
 	fs.read(msg, 10);
 	int count = 0;
@@ -121,14 +117,12 @@ void File::Sort(int n)
 	{
 		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("File is not open");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return;
+		exception.getError();
 	}
 	int* m;
 	m = new int[n];
@@ -147,32 +141,28 @@ void File::Sort(int n)
 	fs1.open(path, fstream::binary | fstream::out | fstream::trunc);
 	try
 	{
-		if (!fs1.is_open())
+		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("File is not open");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return;
+		exception.getError();
 	}
 	fs1.close();
 	fstream fs2;
 	fs2.open(path, fstream::binary | fstream::out);
 	try
 	{
-		if (!fs2.is_open())
+		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("File is not open");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return;
+		exception.getError();
 	}
 	cout << "Sort by code of products:  " << endl;
 	for (int i = 0; i < n; i++)
@@ -242,14 +232,12 @@ void File::WriteBin(ATS pr)
 	{
 		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("Can`t open file");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return;
+		exception.getError();
 	}
 	fs.write((char*)&pr, sizeof(pr));
 	/*fs.write(reinterpret_cast<char*>(&pr), sizeof(pr));*/
@@ -265,14 +253,12 @@ void File::WriteText()
 	{
 		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("Can`t open file");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return;
+		exception.getError();
 	}
 	cout << "Enter message: ";
 	cin >> msg;
@@ -288,14 +274,12 @@ void File::ReadBin(int n)
 	{
 		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("Can`t open file");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return;
+		exception.getError();
 	}
 	cout << "____________________________________" << endl;
 	ATS pr;
@@ -318,14 +302,12 @@ void File::ReadText()
 	{
 		if (!fs.is_open())
 		{
-			throw 1;
+			throw ExceptionStack("Can`t open file");
 		}
 	}
-	catch (int i)
+	catch (ExceptionStack exception)
 	{
-		Exception ex(i);
-		ex.Print();
-		return;
+		exception.getError();
 	}
 	cout << "File " << path << ":" << endl;
 	while (!fs.eof())
@@ -371,14 +353,12 @@ int main()
 			cin >> n;
 			if (cin.fail())
 			{
-				throw 0;
+				throw ExceptionStack("Can`t read data");
 			}
 		}
-		catch (int i)
+		catch (ExceptionStack exception)
 		{
-			Exception ex(i);
-			ex.Print();
-			return 0;
+			exception.getError();
 		}
 		code = new int[n];
 		secs = new int[n];
@@ -424,14 +404,12 @@ int main()
 					cin >> index;
 					if (cin.fail())
 					{
-						throw 0;
+						throw ExceptionStack("Can`t read data");
 					}
 				}
-				catch (int i)
+				catch (ExceptionStack exception)
 				{
-					Exception ex(i);
-					ex.Print();
-					return 0;
+					exception.getError();
 				}
 				int k;
 				k = file2.Del(index, n);
